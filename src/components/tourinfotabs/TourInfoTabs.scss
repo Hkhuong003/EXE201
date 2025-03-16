@@ -1,0 +1,28 @@
+.tour-info-tabs {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  
+    .tab-list {
+      display: flex;
+      border-bottom: 2px solid #ddd;
+  
+      .tab-item {
+        padding: 10px 15px;
+        cursor: pointer;
+        font-weight: bold;
+        &.active {
+          color: #fff;
+          background: #ff9800;
+        }
+      }
+    }
+  
+    .tab-content {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+  

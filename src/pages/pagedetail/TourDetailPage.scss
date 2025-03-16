@@ -1,0 +1,19 @@
+.tour-detail-page {
+  padding: 20px;
+  background: #f8f9fa;
+}
+
+.tour-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.tour-main {
+  flex: 2;
+}
+
+.tour-sidebar {
+  flex: 1;
+}

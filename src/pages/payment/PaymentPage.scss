@@ -1,0 +1,30 @@
+.payment-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #e3f2fd, #c8e6c9);
+  
+    .payment-card {
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+      h2 {
+        margin-bottom: 15px;
+        color: #333;
+      }
+  
+      .qr-code {
+        width: 100%;
+        max-width: 250px;
+        display: block;
+        margin: auto;
+        border-radius: 15px;  // 🌟 Bo góc QR code
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Hiệu ứng đổ bóng
+      }
+    }
+  }
+  

@@ -1,0 +1,20 @@
+.home-page-layout {
+  display: flex;
+  justify-content: space-between; /* Chia đều không gian giữa 2 phần */
+  align-items: flex-start;
+  gap: 20px; /* Giảm khoảng cách giữa 2 phần */
+  padding: 40px 100px; /* Tạo khoảng cách với viền màn hình */
+  max-width: 1200px; /* Giới hạn chiều rộng */
+  margin: 0 auto; /* Căn giữa trang */
+  
+    // Đảm bảo PopularTours chiếm phần lớn không gian
+    .popular-tours {
+      flex: 2;
+    }
+  
+    // Đảm bảo NewsSection nhỏ hơn
+    .news-section {
+      flex: 1;
+    }
+  }
+  

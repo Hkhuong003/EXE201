@@ -1,0 +1,15 @@
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f4f4f4;
+  gap: 80px; // Tăng khoảng cách giữa logo và form
+
+  .logo {
+    img {
+      width: 280px; // Tăng kích thước logo
+      height: auto;
+    }
+  }
+}

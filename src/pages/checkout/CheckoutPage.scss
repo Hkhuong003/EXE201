@@ -1,0 +1,88 @@
+.checkout-page {
+    background-color: #f0f4f8;
+    min-height: 100vh;
+    padding-bottom: 30px;
+  }
+  
+  .checkout-container {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .tour-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .tour-type {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+  }
+  
+  .tour-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .tour-details {
+    font-size: 16px;
+    text-align: left;
+    margin-bottom: 20px;
+  
+    p {
+      margin: 5px 0;
+    }
+  }
+  
+  .customer-info {
+    text-align: left;
+    font-size: 16px;
+  
+    p {
+      margin: 5px 0;
+    }
+  
+    .total-price {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 10px;
+  
+      .price {
+        color: red;
+        font-size: 20px;
+      }
+    }
+  }
+  
+  .confirm-button {
+    width: 100%;
+    padding: 12px;
+    background: #2d9cdb;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  
+    &:hover {
+      background: #1a73e8;
+    }
+  }
+  

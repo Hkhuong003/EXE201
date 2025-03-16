@@ -1,0 +1,30 @@
+.dashboard {
+    display: flex;
+  
+    .dashboard-content {
+      flex-grow: 1;
+      padding: 80px 20px 20px; // Thêm padding-top để tránh bị header che mất
+      width: 100%;
+    }
+  }
+  
+    .sidebar {
+      width: 250px;
+    }
+  
+    .dashboard-content {
+      flex: 1;
+      padding: 20px;
+    }
+  
+    .header {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+    }
+  
+    .stats-card {
+      padding: 20px;
+      text-align: center;
+    }
+  

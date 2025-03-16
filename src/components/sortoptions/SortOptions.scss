@@ -1,0 +1,40 @@
+.sort-container {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    
+    /** Căn trái **/
+    justify-content: flex-start;
+  
+    .sort-label {
+      margin-right: 5px;
+    }
+  
+    .sort-button {
+      background: none;
+      border: none;
+      font-size: 14px;
+      font-weight: bold;
+      color: #007ACC;
+      cursor: pointer;
+      transition: color 0.3s;
+  
+      &:hover {
+        color: #005A9E;
+      }
+  
+      &.active {
+        text-decoration: underline;
+      }
+    }
+  
+    .separator {
+      margin: 0 8px;
+      color: #333;
+      font-weight: normal;
+    }
+  }
+  

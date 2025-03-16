@@ -1,0 +1,54 @@
+.admin-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+
+  .dashboard-title {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .notification-icon {
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    span {
+      font-weight: bold;
+    }
+
+    .ant-dropdown-trigger {
+      cursor: pointer;
+    }
+  }
+
+  /* Sidebar */
+  .sidebar-container {
+    position: fixed;
+    top: 60px;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    background: #222;
+    transition: left 0.3s ease-in-out;
+    z-index: 999;
+
+    &.show {
+      left: 0;
+    }
+  }
+}

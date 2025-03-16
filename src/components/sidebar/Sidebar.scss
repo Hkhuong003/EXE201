@@ -1,0 +1,35 @@
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: -260px; // Ẩn sidebar mặc định
+    width: 250px;
+    height: calc(100vh - 60px);
+    background: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease-in-out; // Hiệu ứng trượt
+    overflow-y: auto; // Cho phép cuộn nếu danh sách dài
+    scrollbar-width: thin; // Giảm độ lớn thanh cuộn (Firefox)
+    scrollbar-color: #ccc transparent; // Màu thanh cuộn
+  
+    &.show {
+      left: 0; // Hiện sidebar khi có class "show"
+    }
+  
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 3px;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+  
+    .ant-menu {
+      border-right: none;
+    }
+  }
+  

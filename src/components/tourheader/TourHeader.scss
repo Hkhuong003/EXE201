@@ -1,0 +1,65 @@
+.tour-header {
+  display: flex;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  align-items: center;
+  gap: 40px; // Tăng khoảng cách giữa ảnh và thông tin
+}
+
+.tour-header__left {
+  flex: 1;
+}
+
+.tour-header__image {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.tour-header__right {
+  flex: 1;
+  margin-left: 20px; // Dịch phần thông tin sang phải hơn
+}
+
+.tour-header__title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.tour-header__info p {
+  margin: 8px 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.tour-header__date {
+  background: #f4c542;
+  color: #000;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.tour-header__price {
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.tour-header__button {
+  background: #2d9cdb;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.tour-header__button:hover {
+  background: #1c7bbf;
+}

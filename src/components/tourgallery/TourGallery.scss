@@ -1,0 +1,55 @@
+.tour-gallery {
+  max-width: 1200px; // Đồng bộ với TourHeader
+  margin: 0 auto; // Canh giữa trang
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; // Khoảng cách giữa các ảnh con
+
+  &__item {
+    flex: 1; 
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 200px; // Giữ tỉ lệ ảnh đẹp
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+  }
+
+  &__title {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+}
+
+// Đảm bảo gallery luôn full width so với TourHeader
+@media (max-width: 1200px) {
+  .tour-gallery {
+    max-width: 95%; // Cho màn hình nhỏ hơn, gallery vẫn full width
+  }
+}
+
+@media (max-width: 768px) {
+  .tour-gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tour-gallery__item {
+    width: 100%; // Ảnh full khi ở mobile
+  }
+}

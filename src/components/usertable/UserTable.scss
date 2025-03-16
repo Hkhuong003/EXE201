@@ -1,0 +1,40 @@
+.user-table {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    .ant-table {
+      border-radius: 10px;
+    }
+  
+    .ant-table-thead > tr > th {
+      background: #f8f9fa;
+      font-weight: bold;
+    }
+  
+    .ant-avatar {
+      margin-right: 10px;
+    }
+  
+    .status {
+      padding: 5px 10px;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: bold;
+      color: #fff;
+    }
+  
+    .status-green {
+      background-color: #28a745;
+    }
+  
+    .status-red {
+      background-color: #dc3545;
+    }
+  
+    .status-blue {
+      background-color: #007bff;
+    }
+  }
+  
