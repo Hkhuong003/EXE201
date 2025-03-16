@@ -1,7 +1,7 @@
 import React from "react";
 import SignupForm from "../../components/signupform/SignupForm";
 import image from '../../assets/logo.png';
-import "./Signup.scss";
+// import "./Signup.scss";
 
 const SignupPage = () => {
   return (
