@@ -1,41 +1,58 @@
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #43B0F1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .logo {
+    .logo-icon {
+      height: 50px;
+    }
+  }
+
+  .nav-menu {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background-color: #43B0F1;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
-    .logo {
-      .logo-icon {
-        height: 50px;
-      }
-    }
-  
-    .nav-menu {
-      display: flex;
-      gap: 20px;
-      
-      a {
-        text-decoration: none;
-        color: white;
-        font-weight: bold;
-        transition: color 0.3s ease;
-  
-        &:hover {
-          color: #007bff;
-        }
-      }
-    }
-  
-    .user-icon {
-      font-size: 24px;
-      cursor: pointer;
+    gap: 20px;
+
+    a {
+      text-decoration: none;
       color: white;
+      font-weight: bold;
       transition: color 0.3s ease;
-  
+
       &:hover {
         color: #007bff;
       }
     }
   }
+
+  .user-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #007bff;
+    }
+
+    .ant-dropdown {
+      .ant-dropdown-menu {
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+        .ant-dropdown-menu-item {
+          color: #333;
+          font-weight: 500;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #f0f0f0;
+          }
+        }
+      }
+    }
+  }
+}

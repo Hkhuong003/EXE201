@@ -1,15 +1,88 @@
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #f4f4f4;
-    gap: 50px;
-  
-    .logo {
-      img {
-        width: 300px;
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+
+  .logo-container {
+    margin-right: 50px;
+
+    img {
+      width: 300px; // Tăng kích thước logo lên 300px
+      height: auto;
+    }
+  }
+
+  .login-container {
+    form {
+      background-color: #4a90e2;
+      padding: 40px;
+      border-radius: 20px;
+      width: 400px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+      h1 {
+        color: white;
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      p {
+        color: white;
+        font-size: 14px;
+        margin-bottom: 30px;
+      }
+
+      label {
+        display: block;
+        text-align: left;
+        color: white;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 20px;
+        font-size: 14px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        outline: none;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #e04343;
+        }
+      }
+
+      .signup-link {
+        margin-top: 20px;
+        color: white;
+        font-size: 14px;
+
+        a {
+          color: #ff4d4d;
+          text-decoration: none;
+          font-weight: bold;
+        }
       }
     }
   }
-  
+}

@@ -1,56 +1,63 @@
 import React, { useState } from "react";
-import LoginForm from "../../components/loginform/LoginForm";
-import image from '../../assets/logo.png';
-import { useAuth } from "../../contexts/AuthContext"; // Import context để truy cập vào auth
-import { useNavigate } from "react-router-dom";  // Dùng useNavigate để điều hướng sau khi đăng nhập
+import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import "./LoginPage.scss";
+import logo from "../../assets/logo.png";
 
 const LoginPage = () => {
-  const { login } = useAuth();  // Sử dụng hook từ context để thực hiện đăng nhập
-  const navigate = useNavigate();
+  const { login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    
-    // Kiểm tra đăng nhập từ context
-    login(username, password);
-    
-    // Sau khi đăng nhập thành công, điều hướng tới trang chủ hoặc admin page tùy theo quyền
-    navigate("/");
+    try {
+      // Gọi hàm login từ AuthContext để xử lý đăng nhập
+      await login(username, password);
+      // Nếu đăng nhập thành công, lưu token vào localStorage (nếu cần)
+      localStorage.setItem("token", "1");
+      // Điều hướng về trang chủ
+      navigate("/");
+    } catch (error) {
+      // Xử lý lỗi đăng nhập (có thể hiển thị thông báo lỗi)
+      console.error("Login failed:", error);
+    }
   };
 
   return (
-    <div className="login-container">
-      <div className="logo">
-        <img src={image} alt="DALAT Tourism" />
+    <div className="login-page">
+      <div className="logo-container">
+        <img src={logo} alt="Dalat Tourism Logo" />
       </div>
-      <form onSubmit={handleLogin}>
-        <div className="input-group">
-          <label htmlFor="username">Username</label>
-          <input 
-            type="text" 
-            id="username" 
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)} 
-            placeholder="Enter your username" 
-            required 
+      <div className="login-container">
+        <form onSubmit={handleLogin}>
+          <h1>LOGIN</h1>
+          <p>Welcome to Historical Tourism! <br /> "See the World Through Historical Eyes!"</p>
+          <label htmlFor="username">User Name</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Enter your user name..."
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
           />
-        </div>
-        <div className="input-group">
           <label htmlFor="password">Password</label>
-          <input 
-            type="password" 
-            id="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            placeholder="Enter your password" 
-            required 
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password..."
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
-        </div>
-        <button type="submit">Login</button>
-      </form>
+          <button type="submit">Login</button>
+          <div className="signup-link">
+            Don't have an account? <a href="/sign-up">Signup</a>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

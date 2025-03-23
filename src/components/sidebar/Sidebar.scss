@@ -1,35 +1,53 @@
 .sidebar {
-    position: fixed;
-    top: 60px;
-    left: -260px; // Ẩn sidebar mặc định
-    width: 250px;
-    height: calc(100vh - 60px);
-    background: #fff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: left 0.3s ease-in-out; // Hiệu ứng trượt
-    overflow-y: auto; // Cho phép cuộn nếu danh sách dài
-    scrollbar-width: thin; // Giảm độ lớn thanh cuộn (Firefox)
-    scrollbar-color: #ccc transparent; // Màu thanh cuộn
-  
-    &.show {
-      left: 0; // Hiện sidebar khi có class "show"
+  width: 0;
+  background-color: #fff;
+  height: calc(100vh - 60px);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
+  overflow: hidden;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: 1000;
+
+  &.show {
+    width: 200px;
+  }
+
+  .ant-menu {
+    .ant-menu-item,
+    .ant-menu-submenu-title {
+      padding: 10px 20px;
+      font-weight: bold;
+      color: #595959;
+
+      .anticon {
+        margin-right: 10px;
+        font-size: 18px;
+      }
     }
-  
-    &::-webkit-scrollbar {
-      width: 6px;
+
+    .ant-menu-item-selected,
+    .ant-menu-item:hover,
+    .ant-menu-submenu-title:hover {
+      background-color: #e6f7ff;
+      color: #1890ff;
     }
-  
-    &::-webkit-scrollbar-thumb {
-      background-color: #ccc;
-      border-radius: 3px;
+
+    .ant-menu-submenu-open {
+      .ant-menu-submenu-title {
+        background-color: #e6f7ff;
+        color: #1890ff;
+      }
     }
-  
-    &::-webkit-scrollbar-track {
-      background-color: transparent;
-    }
-  
-    .ant-menu {
-      border-right: none;
+
+    .ant-menu-sub {
+      background-color: #fff;
+
+      .ant-menu-item {
+        padding-left: 40px !important;
+        font-weight: normal;
+      }
     }
   }
-  
+}

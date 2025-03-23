@@ -2,10 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ClockCircleOutlined, CalendarOutlined, CarOutlined } from "@ant-design/icons";
 import { Button } from "antd";
+import { useAuth } from "../../contexts/AuthContext";  // Import AuthContext để kiểm tra trạng thái đăng nhập
 import "./TourHeader.scss";
 
 const TourHeader = () => {
   const navigate = useNavigate(); // Hook để chuyển trang
+  const { user } = useAuth();  // Lấy thông tin người dùng từ AuthContext
 
   const tourData = {
     title: "Tour Đà Lạt 3 ngày 2 đêm",
@@ -18,7 +20,13 @@ const TourHeader = () => {
 
   // Xử lý khi bấm "Đặt tour"
   const handleBooking = () => {
-    navigate("/booking"); // Chuyển đến trang booking
+    if (!user) {
+      // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
+      navigate("/login");
+    } else {
+      // Nếu đã đăng nhập, chuyển đến trang đặt tour
+      navigate("/booking");
+    }
   };
 
   return (
