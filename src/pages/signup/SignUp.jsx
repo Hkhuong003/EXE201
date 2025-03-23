@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Signup.scss";
+import "../../pages/signup/SignUp.scss";
 import logo from "../../assets/logo.png";
 
 const SignupPage = () => {
