@@ -55,7 +55,7 @@ const AdminDashboard = () => {
         onSidebarMouseLeave={() => setSidebarVisible(false)}
         sidebarVisible={sidebarVisible}
       />
-      <div className="main-content">
+      <div className={`main-content ${sidebarVisible ? "sidebar-open" : ""}`}>
         <div className="stats">
           <Card>
             <BarChartOutlined style={{ fontSize: "24px", color: "#1890ff" }} />

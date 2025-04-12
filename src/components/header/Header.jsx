@@ -27,6 +27,14 @@ const Header = () => {
     navigate('/search-page');
   };
 
+  const handleAboutUsClick = () => {
+    navigate('/about-us');
+  };
+
+  const handleNewsClick = () => {
+    navigate('/news');
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
    
@@ -55,8 +63,12 @@ const Header = () => {
         <a onClick={handleBookingClick} style={{ cursor: 'pointer' }}>
           BOOKING
         </a>
-        <a href="#">ABOUT US</a>
-        <a href="#">NEWS</a>
+        <a onClick={handleAboutUsClick} style={{ cursor: 'pointer' }}>
+          ABOUT US
+        </a>
+        <a onClick={handleNewsClick} style={{ cursor: 'pointer' }}>
+          NEWS
+        </a>
       </nav>
       <div className="user-icon">
         <Dropdown overlay={menu} trigger={['click']}>

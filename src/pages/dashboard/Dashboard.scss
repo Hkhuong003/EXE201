@@ -6,10 +6,13 @@
 
   .main-content {
     flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    margin-top: 60px; // Đảm bảo không bị che bởi header
-    margin-left: 0; // Không cần margin-left vì sidebar đã cố định
+    padding: 80px 20px 20px;
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+
+    &.sidebar-open {
+      margin-left: 200px; // Dịch sang phải khi sidebar hiện
+    }
 
     .stats {
       display: flex;
