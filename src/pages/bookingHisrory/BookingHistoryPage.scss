@@ -1,0 +1,60 @@
+.booking-history-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .main-content.sidebar-open {
+    margin-left: 200px;
+  }
+  
+  .booking-details {
+    margin-bottom: 20px;
+  }
+  
+  .booking-details h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .booking-details .ant-table {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .booking-details .ant-table-thead > tr > th {
+    background-color: #42a5f5;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .booking-details .ant-table-tbody > tr > td {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .booking-details .ant-table-tbody > tr:hover > td {
+    background-color: #e6f7ff;
+  }
+  
+  .booking-details .ant-tag {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  
+  .error-message {
+    color: #f44336;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+  }

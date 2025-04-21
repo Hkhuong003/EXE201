@@ -14,6 +14,7 @@ const Sidebar = ({ visible, onMouseEnter, onMouseLeave }) => {
     if (e.key === "all-services") navigate("/services");
     if (e.key === "add-service") navigate("/services/add");
     if (e.key === "add-packageservice") navigate("/packageservices/add");
+    if (e.key === "booking-history") navigate("/booking-history"); // Thêm điều hướng tới trang Booking History
   };
 
   return (
@@ -34,6 +35,7 @@ const Sidebar = ({ visible, onMouseEnter, onMouseLeave }) => {
           <Menu.Item key="all-services">All Services</Menu.Item>
           <Menu.Item key="add-service">Add Service</Menu.Item>
           <Menu.Item key="add-packageservice">Add Service+Package</Menu.Item>
+          <Menu.Item key="booking-history">Booking History</Menu.Item> {/* Thêm menu item mới */}
         </Menu.SubMenu>
       </Menu>
     </div>

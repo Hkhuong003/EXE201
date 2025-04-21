@@ -19,6 +19,7 @@ import ServicesPage from "./pages/servicePage/ServicesPage";
 import AddPackageService from "./pages/AddPackageService/AddPackageService";
 import Header from "./components/header/Header";
 import HistoryPage from "./pages/history/HistoryPage";
+import BookingHistoryPage from "./pages/bookingHisrory/BookingHistoryPage";
 
 function App() {
   return (
@@ -43,6 +44,8 @@ function App() {
           <Route path="/packageservices/add" element={<AddPackageService />} />
           <Route path="/users" element={<AllUsersPage />} />
           <Route path="/tours" element={<AllPackagesPage />} />
+          <Route path="/booking-history" element={<BookingHistoryPage />} />
+          
         </Routes>
       </Router>
     </AuthProvider>
