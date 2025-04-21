@@ -4,7 +4,6 @@ import SortOptions from "../../components/sortoptions/SortOptions";
 import TourCard from "../../components/tourcards/TourCard";
 import SearchBar from "../../components/searchbar/SearchBar";
 import InfoSection from "../../components/infosection/InfoSection";
-import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import axios from "axios";
 import "./SearchPage.scss";
