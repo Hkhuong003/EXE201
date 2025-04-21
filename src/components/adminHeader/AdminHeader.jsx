@@ -1,23 +1,25 @@
-import React, { useState } from "react";
-import { Avatar, Dropdown, Menu, Badge } from "antd";
-import { UserOutlined, BellOutlined } from "@ant-design/icons";
+import React from "react";
+import { Avatar, Dropdown, Menu } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import Sidebar from "../sidebar/Sidebar";
+import { useNavigate } from "react-router-dom";
 import "./AdminHeader.scss";
 
 const AdminHeader = ({ onSidebarMouseEnter, onSidebarMouseLeave, sidebarVisible }) => {
-  const [notificationCount] = useState(3);
+  const navigate = useNavigate();
 
   const handleMenuClick = ({ key }) => {
-    if (key === "profile") {
-      console.log("Navigate to Profile");
-    } else if (key === "logout") {
-      console.log("Logout");
+    if (key === "logout") {
+      navigate("/login"); // Chuyển hướng về trang đăng nhập
     }
+  };
+
+  const handleDashboardClick = () => {
+    navigate("/adminDashboard"); // Chuyển hướng về trang /adminDashboard
   };
 
   const menu = (
     <Menu onClick={handleMenuClick}>
-      <Menu.Item key="profile">Profile</Menu.Item>
       <Menu.Item key="logout">Logout</Menu.Item>
     </Menu>
   );
@@ -27,15 +29,13 @@ const AdminHeader = ({ onSidebarMouseEnter, onSidebarMouseLeave, sidebarVisible 
       <div
         className="dashboard-title"
         onMouseEnter={onSidebarMouseEnter}
+        onClick={handleDashboardClick} // Thêm sự kiện onClick để điều hướng
+        style={{ cursor: "pointer" }} // Thêm con trỏ để người dùng biết có thể nhấn
       >
         Dashboard
       </div>
 
       <div className="header-right">
-        <Badge count={notificationCount} size="small">
-          <BellOutlined className="notification-icon" />
-        </Badge>
-
         <span>Admin</span>
 
         <Dropdown overlay={menu} trigger={["click"]}>

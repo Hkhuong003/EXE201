@@ -1,33 +1,81 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { ClockCircleOutlined, CalendarOutlined, CarOutlined } from "@ant-design/icons";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "antd";
-import { useAuth } from "../../contexts/AuthContext";  // Import AuthContext để kiểm tra trạng thái đăng nhập
+import { StarFilled, CarOutlined } from "@ant-design/icons";
+import { useAuth } from "../../contexts/AuthContext";
+import axios from "axios";
 import "./TourHeader.scss";
 
 const TourHeader = () => {
-  const navigate = useNavigate(); // Hook để chuyển trang
-  const { user } = useAuth();  // Lấy thông tin người dùng từ AuthContext
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { user } = useAuth();
+  const [tourData, setTourData] = useState(null);
+  const [error, setError] = useState(null);
 
-  const tourData = {
-    title: "Tour Đà Lạt 3 ngày 2 đêm",
-    image: "https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/07/anh-da-lat-36.jpg",
-    price: "1.999.000đ",
-    duration: "3 ngày 2 đêm",
-    departureDates: ["22/1", "23/1", "24/1"],
-    vehicle: "Xe du lịch",
-  };
+  useEffect(() => {
+    const fetchTour = async () => {
+      if (!id) {
+        setError("Tour ID is missing");
+        return;
+      }
+      try {
+        const response = await axios.get(`https://exe201tourbook.azurewebsites.net/api/packages/${id}`);
+        const tour = response.data;
+        setTourData({
+          title: tour.name,
+          description: tour.description,
+          price: `${tour.price.toLocaleString("vi-VN")}đ`, // Định dạng giá chuẩn Việt Nam
+          rating: tour.rating,
+          image: tour.pictureUrl || "src/assets/background.png",
+          vehicle: "Xe du lịch",
+        });
+      } catch (error) {
+        console.error("Error fetching tour:", error);
+        setError("Failed to load tour data");
+      }
+    };
+    fetchTour();
+  }, [id]);
 
-  // Xử lý khi bấm "Đặt tour"
   const handleBooking = () => {
     if (!user) {
-      // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
       navigate("/login");
     } else {
-      // Nếu đã đăng nhập, chuyển đến trang đặt tour
-      navigate("/booking");
+      navigate(`/booking/${id}`); // Chuyển hướng đến booking với packageId
     }
   };
+
+  const renderStars = (rating) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<StarFilled key={i} style={{ color: "#fadb14", fontSize: "16px" }} />);
+    }
+    if (hasHalfStar) {
+      stars.push(
+        <StarFilled
+          key="half"
+          style={{ color: "#fadb14", fontSize: "16px", opacity: 0.5 }}
+        />
+      );
+    }
+    for (let i = stars.length; i < 5; i++) {
+      stars.push(<StarFilled key={i} style={{ color: "#d9d9d9", fontSize: "16px" }} />);
+    }
+
+    return stars;
+  };
+
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
+
+  if (!tourData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="tour-header">
@@ -36,31 +84,22 @@ const TourHeader = () => {
       </div>
       <div className="tour-header__right">
         <h2 className="tour-header__title">{tourData.title}</h2>
-
         <div className="tour-header__info">
           <p>
-            <ClockCircleOutlined style={{ marginRight: 8 }} />
-            <strong>Thời gian:</strong> {tourData.duration}
+            <strong>Mô tả:</strong> {tourData.description}
           </p>
           <p>
-            <CalendarOutlined style={{ marginRight: 8 }} />
-            <strong>Khởi hành:</strong>{" "}
-            {tourData.departureDates.map((date, index) => (
-              <span key={index} className="tour-header__date">
-                {date}
-              </span>
-            ))}
+            <strong>Giá:</strong> {tourData.price} / Người
           </p>
           <p>
-            <CarOutlined style={{ marginRight: 8 }} />
+            <CarOutlined />
             <strong>Phương tiện:</strong> {tourData.vehicle}
           </p>
+          <p>
+            <strong>Đánh giá:</strong>{" "}
+            <span className="tour-header__rating">{renderStars(tourData.rating)}</span>
+          </p>
         </div>
-
-        <p className="tour-header__price">
-          <strong>{tourData.price} / Người</strong>
-        </p>
-
         <Button type="primary" size="large" className="tour-header__button" onClick={handleBooking}>
           Đặt tour
         </Button>

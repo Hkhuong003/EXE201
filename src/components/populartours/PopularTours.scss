@@ -1,62 +1,62 @@
 .popular-tour {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: center;
-}
-
-.tour-sort {
-  text-align: left;
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 10px;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .tour-card {
-  width: 100%;
-  max-width: 600px;
-  min-height: 140px;
-  display: flex;
-  align-items: center;
-  padding: 12px;
-  border-radius: 12px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-
-  &:hover {
-    transform: scale(1.02);
-  }
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-.tour-image {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
+.tour-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tour-card:hover .tour-image {
+  transform: scale(1.05); /* Phóng to nhẹ khi hover */
 }
 
 .tour-info {
-  flex: 1;
-  padding-left: 16px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; /* Căn giữa dọc */
 }
 
 .tour-title {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 4px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
 }
 
-.tour-date {
-  background-color: #007bff;
-  color: white;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 12px;
-  margin-right: 5px;
+.tour-info .ant-space {
+  width: 100%; /* Đảm bảo Space chiếm toàn bộ chiều rộng */
+}
+
+.tour-info .ant-space-item {
+  display: flex;
+  align-items: center; /* Căn giữa biểu tượng và nội dung */
+  margin-bottom: 8px;
+}
+
+.tour-info .ant-space-item .anticon {
+  margin-right: 8px; /* Khoảng cách giữa biểu tượng và nội dung */
+  color: #1890ff; /* Màu xanh cho biểu tượng */
+}
+
+.tour-info .ant-space-item .ant-typography {
+  font-size: 14px;
+  color: #666;
+}
+
+.tour-info .ant-space-item:last-child .ant-typography {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333; /* Giá đậm và lớn hơn */
 }

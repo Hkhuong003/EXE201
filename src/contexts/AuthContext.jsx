@@ -1,48 +1,67 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-// Tạo AuthContext
 const AuthContext = createContext();
-
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // Quản lý trạng thái người dùng
+  const [user, setUser] = useState(null);
 
-  // Khôi phục trạng thái đăng nhập từ localStorage khi component mount
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      // Giả lập khôi phục thông tin user, bạn có thể thay bằng API để lấy thông tin user
-      setUser({ username: "user", role: "user" }); // Cần thay bằng dữ liệu thực từ API
-    }
+    if (token) verifyToken(token).catch(logout);
   }, []);
 
-  // Hàm login
-  const login = async (username, password) => {
+  const verifyToken = async (token) => {
     try {
-      // Giả lập kiểm tra đăng nhập, thay bằng API thực tế
-      if (username === "admin" && password === "12345") {
-        const userData = { username: "admin", role: "admin" };
-        setUser(userData);
-        localStorage.setItem("token", "1"); // Lưu token vào localStorage
-        return userData;
-      } else if (username === "user" && password === "12345") {
-        const userData = { username: "user", role: "user" };
-        setUser(userData);
-        localStorage.setItem("token", "1"); // Lưu token vào localStorage
-        return userData;
-      } else {
-        throw new Error("Invalid username or password");
+      const response = await fetch("https://exe201tourbook.azurewebsites.net/DecodeToken", {
+        method: "GET",
+        headers: {
+          accept: "*/*",
+          token: token,
+        },
+      });
+
+      const data = await response.json();
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Invalid token");
       }
+
+      console.log(">>>>> ", data.data);
+      const userData = {
+        username: data.data.username,
+        role: data.data.role,
+        userId: data.data.userId,
+      };
+      setUser(userData);
+      return userData;
     } catch (error) {
-      throw error; // Ném lỗi để component gọi login xử lý
+      console.error("Error verifying token:", error.message);
+      throw error;
     }
   };
 
-  // Hàm logout
+  const login = async (username, password) => {
+    const response = await fetch("https://exe201tourbook.azurewebsites.net/Login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await response.json();
+    console.log("Login response: ", data);
+    if (!data.success) {
+      throw new Error(data.message || "Login failed");
+    }
+
+    localStorage.setItem("token", data.data.token);
+    const userData = await verifyToken(data.data.token);
+    return userData;
+  };
+
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("token"); // Xóa token khỏi localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("accountId");
   };
 
   return (

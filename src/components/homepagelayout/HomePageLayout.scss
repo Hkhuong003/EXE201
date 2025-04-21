@@ -1,20 +1,147 @@
 .home-page-layout {
   display: flex;
-  justify-content: space-between; /* Chia đều không gian giữa 2 phần */
-  align-items: flex-start;
-  gap: 20px; /* Giảm khoảng cách giữa 2 phần */
+  justify-content: space-between; /* Giữ bố cục ngang */
+  align-items: flex-start; /* Căn đầu trên */
+  gap: 20px; /* Khoảng cách giữa PopularTours và NewsSection */
   padding: 40px 100px; /* Tạo khoảng cách với viền màn hình */
   max-width: 1200px; /* Giới hạn chiều rộng */
   margin: 0 auto; /* Căn giữa trang */
-  
-    // Đảm bảo PopularTours chiếm phần lớn không gian
-    .popular-tours {
-      flex: 2;
-    }
-  
-    // Đảm bảo NewsSection nhỏ hơn
-    .news-section {
-      flex: 1;
-    }
+
+  // PopularTours chiếm phần lớn không gian
+  .popular-tours {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Khoảng cách giữa các thẻ tour */
   }
-  
+
+  // NewsSection nhỏ hơn
+  .news-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Khoảng cách giữa các mục tin tức */
+  }
+}
+
+/* Định dạng thẻ tour trong PopularTours */
+.popular-tours .tour-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.popular-tours .tour-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.popular-tours .tour-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+  transition: transform 0.3s ease;
+}
+
+.popular-tours .tour-card:hover .tour-image {
+  transform: scale(1.05);
+}
+
+.popular-tours .tour-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.popular-tours .tour-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.popular-tours .tour-info .ant-space {
+  width: 100%;
+}
+
+.popular-tours .tour-info .ant-space-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.popular-tours .tour-info .ant-space-item .anticon {
+  margin-right: 8px;
+  color: #1890ff;
+}
+
+.popular-tours .tour-info .ant-space-item .ant-typography {
+  font-size: 14px;
+  color: #666;
+}
+
+.popular-tours .tour-info .ant-space-item:last-child .ant-typography {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Định dạng mục tin tức trong NewsSection */
+.news-section {
+  .news-header {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a73e8; /* Màu xanh cho tiêu đề */
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .news-item {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Khoảng cách giữa biểu tượng và nội dung */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .news-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .news-item .anticon {
+    font-size: 24px;
+    color: #fadb14; /* Màu vàng cho biểu tượng ngôi sao */
+  }
+
+  .news-item .news-content {
+    flex: 1;
+  }
+
+  .news-item .news-content .ant-typography {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  .news-item .news-content .ant-btn {
+    background-color: #1890ff;
+    border-color: #1890ff;
+    color: #fff;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-size: 12px;
+  }
+
+  .news-item .news-content .ant-btn:hover {
+    background-color: #40a9ff;
+    border-color: #40a9ff;
+  }
+}

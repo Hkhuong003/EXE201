@@ -25,7 +25,6 @@ const CheckoutPage = () => {
 
   return (
     <div className="checkout-page">
-      <Header />
       <div className="checkout-container">
         <h2 className="title">Thông tin đặt vé</h2>
         <h3 className="tour-name">{bookingInfo.tourName}</h3>

@@ -1,0 +1,32 @@
+.services-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    width: 100%;
+  }
+  
+  .main-content {
+    padding: 24px;
+    flex-grow: 1;
+    transition: margin-left 0.3s;
+  }
+  
+  .main-content.sidebar-open {
+    margin-left: 200px; /* Điều chỉnh theo chiều rộng sidebar */
+  }
+  
+  .error-message {
+    color: red;
+    margin-bottom: 16px;
+    font-weight: bold;
+  }
+  
+  h1 {
+    margin-bottom: 24px;
+  }
+  
+  .service-table {
+    background: #fff;
+    border-radius: 8px;
+  }

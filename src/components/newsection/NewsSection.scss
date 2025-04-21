@@ -9,15 +9,14 @@
 }
 
 .news-header {
- font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #42a5f5;
-    width: 100%;
-    padding: 15px 0;
-    border-radius: 15px 15px 0 0; /* Bo tròn chỉ góc trên */
-    margin: 0;
-
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff !important;
+  background-color: #42a5f5;
+  width: 100%;
+  padding: 15px 0;
+  border-radius: 15px 15px 0 0;
+  margin: 0;
 }
 
 .news-list {
@@ -38,6 +37,13 @@
   max-width: 400px;
   padding: 10px;
   gap: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .news-image {
@@ -55,7 +61,22 @@
 .news-title {
   font-size: 14px;
   font-weight: bold;
+  color: #333;
   margin-bottom: 5px;
+}
+
+.news-content-text {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  display: box; /* Hỗ trợ thuộc tính chuẩn */
+  -webkit-line-clamp: 3; /* Thuộc tính không chuẩn */
+  line-clamp: 3; /* Thuộc tính chuẩn */
+  -webkit-box-orient: vertical;
+  box-orient: vertical; /* Hỗ trợ thuộc tính chuẩn */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .news-button {
@@ -67,8 +88,35 @@
   cursor: pointer;
   font-size: 12px;
   transition: background 0.3s;
+}
 
-  &:hover {
-    background-color: #0056b3;
-  }
+.news-button:hover {
+  background-color: #0056b3;
+}
+
+/* Style cho popup */
+.news-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.news-detail-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.news-detail-content {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.modal-error {
+  color: #f44336;
+  font-size: 14px;
+  text-align: center;
 }

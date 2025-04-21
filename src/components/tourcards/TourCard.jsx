@@ -1,38 +1,39 @@
 import React from "react";
-import { ClockCircleOutlined, CarOutlined } from "@ant-design/icons"; // Import icon từ Ant Design
+import { StarFilled, EnvironmentOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 import "./TourCard.scss";
 
 const TourCard = ({ tour }) => {
+  const navigate = useNavigate();
+
+  const handleViewDetails = () => {
+    navigate(`/tour/${tour.id}`);
+  };
+
   return (
     <div className="tour-card">
-      {/* Hình ảnh bên trái */}
       <div className="tour-image-container">
         <img className="tour-image" src={tour.image} alt={tour.title} />
       </div>
-
-      {/* Nội dung bên phải */}
       <div className="tour-content">
         <h3 className="tour-title">{tour.title}</h3>
-
         <div className="tour-info">
-          <p className="tour-duration">
-            <ClockCircleOutlined className="icon" />
-            Thời gian: {tour.duration}
+          <p className="tour-description">
+            <EnvironmentOutlined className="icon" />
+            {tour.description}
           </p>
-          <p className="tour-dates">
-            Khởi hành:
-            <span className="date-badge">{tour.startDate}</span>
-            <span className="date-badge">{tour.endDate}</span>
+          <p className="tour-price">
+            Giá: <span className="price-badge">{tour.price.toLocaleString("vi-VN")}đ</span>
           </p>
-          <p className="tour-transport">
-            <CarOutlined className="icon" />
-            Phương tiện: {tour.transport}
+          <p className="tour-rating">
+            <StarFilled className="icon" style={{ color: "#fadb14" }} />
+            Đánh giá: {tour.rating}/5
           </p>
         </div>
-
-        {/* Nút Xem Chi Tiết */}
         <div className="button-container">
-          <button className="view-button">Xem chi tiết</button>
+          <button className="view-button" onClick={handleViewDetails}>
+            Xem chi tiết
+          </button>
         </div>
       </div>
     </div>

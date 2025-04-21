@@ -1,0 +1,98 @@
+/* Style riêng cho tour-schedule__reviewform */
+.tour-schedule__reviewform {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    background: none;
+    box-shadow: none;
+    display: inline-block;
+    width: auto;
+  }
+  
+  .tour-schedule__reviewform .review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Khoảng cách giữa các phần tử */
+  }
+  
+  .tour-schedule__reviewform .review-form h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1890ff;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .tour-schedule__reviewform .review-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 250px; /* Chiều rộng cố định để form đẹp hơn */
+    margin: 0 auto; /* Căn giữa form */
+  }
+  
+  .tour-schedule__reviewform .rating-input select {
+    padding: 10px;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #666;
+    background: #fff;
+    width: 100%; /* Chiều rộng 100% trong form */
+    cursor: pointer;
+    appearance: none; /* Bỏ mũi tên mặc định của select */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2012%207%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M6%207L12%200H0z%22%2F%3E%3C%2Fsvg%3E'); /* Thêm mũi tên tùy chỉnh */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+  }
+  
+  .tour-schedule__reviewform .comment-input textarea {
+    padding: 10px;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    min-height: 80px;
+    resize: vertical;
+    width: 100%; /* Chiều rộng 100% trong form */
+  }
+  
+  .tour-schedule__reviewform .comment-input textarea::placeholder {
+    color: #999;
+  }
+  
+  .tour-schedule__reviewform .tour-schedule__button {
+    background-color: #0056b3; /* Màu xanh đậm hơn */
+    color: white;
+    border: none;
+    padding: 12px 20px; /* Tăng padding để nút rộng hơn */
+    border-radius: 5px;
+    font-size: 14px; /* Giảm font-size để chữ nhỏ hơn */
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+  }
+  
+  .tour-schedule__reviewform .tour-schedule__button:hover {
+    background-color: #004494; /* Màu hover đậm hơn */
+  }
+  
+  .tour-schedule__reviewform .tour-schedule__button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: #f44336;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .success-message {
+    color: #4caf50;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+  }

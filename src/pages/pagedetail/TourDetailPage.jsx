@@ -1,76 +1,76 @@
-import React from "react";
-import { useParams } from "react-router-dom"; // Import useParams
-import Header from "../../components/header/Header";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import TourHeader from "../../components/tourheader/TourHeader";
-import TourGallery from "../../components/tourgallery/TourGallery";
-import TourInfoTabs from "../../components/tourinfotabs/TourInfoTabs";
 import TourSchedule from "../../components/tourshedule/TourSchedule";
-import TourSidebar from "../../components/toursidebar/TourSidebar";
+import InfoSection from "../../components/infosection/InfoSection";
+import axios from "axios";
 import "./TourDetailPage.scss";
 
-// Dữ liệu mẫu
-const toursData = [
-  {
-    id: 1,
-    title: "Tour Đà Lạt 3 ngày 2 đêm",
-    image: "/images/tour-main.jpg",
-    price: "1.999.000đ",
-    gallery: ["/images/tour1.jpg", "/images/tour2.jpg", "/images/tour3.jpg"],
-    details: {
-      schedule: "Lịch trình tour chi tiết...",
-      policy: "Điều khoản và chính sách...",
-      price: "Bảng giá chi tiết..."
-    },
-    schedule: [
-      { title: "Ngày 1: Khởi hành", description: "Khởi hành từ TP.HCM..." },
-      { title: "Ngày 2: Tham quan", description: "Tham quan thành phố..." },
-      { title: "Ngày 3: Kết thúc", description: "Trở về điểm xuất phát..." }
-    ],
-    info: { hotline: "0934 784 728", email: "support@dalatchill.com" }
-  },
-  {
-    id: 2,
-    title: "Tour Sapa 4 ngày 3 đêm",
-    image: "/images/tour-main2.jpg",
-    price: "2.499.000đ",
-    gallery: ["/images/sapa1.jpg", "/images/sapa2.jpg", "/images/sapa3.jpg"],
-    details: {
-      schedule: "Lịch trình tour Sapa...",
-      policy: "Điều khoản tour Sapa...",
-      price: "Bảng giá tour Sapa..."
-    },
-    schedule: [
-      { title: "Ngày 1: Xuất phát", description: "Khởi hành từ Hà Nội..." },
-      { title: "Ngày 2: Tham quan", description: "Khám phá bản làng..." },
-      { title: "Ngày 3: Chinh phục Fansipan", description: "Leo Fansipan..." },
-      { title: "Ngày 4: Kết thúc", description: "Trở về Hà Nội..." }
-    ],
-    info: { hotline: "0987 654 321", email: "support@sapatour.com" }
-  }
-];
-
 const TourDetailPage = () => {
-  const { tourId } = useParams(); // Lấy tourId từ URL
-  const tourData = toursData.find((tour) => tour.id === parseInt(tourId)); // Tìm tour theo ID
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [tourData, setTourData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTour = async () => {
+      if (!id) {
+        setError("Tour ID is missing");
+        return;
+      }
+      try {
+        const response = await axios.get(`https://exe201tourbook.azurewebsites.net/api/packages/${id}`);
+        const tour = response.data;
+        setTourData({
+          id: tour.id,
+          title: tour.name,
+          description: tour.description,
+          price: `${tour.price.toLocaleString("vi-VN")}đ`,
+          rating: tour.rating,
+          image: tour.pictureUrl || "/images/tour-main.jpg",
+          schedule: tour.itineraries || [ // Sửa itinerary thành itineraries (theo cấu trúc API)
+            { title: "Ngày 1: Khởi hành", description: "Khởi hành từ TP.HCM..." },
+            { title: "Ngày 2: Tham quan", description: "Tham quan thành phố..." },
+            { title: "Ngày 3: Kết thúc", description: "Trở về điểm xuất phát..." },
+          ],
+        });
+        console.log("Dữ liệu gói tour:", JSON.stringify(tour, null, 2)); // Log dữ liệu để kiểm tra
+      } catch (error) {
+        console.error("Lỗi khi lấy dữ liệu gói tour:", error);
+        console.log("Toàn bộ phản hồi lỗi:", JSON.stringify(error.response, null, 2));
+        const errorMessage = error.response?.data?.message || error.message;
+        setError(`Không thể tải dữ liệu gói tour: ${errorMessage}`);
+      }
+    };
+    fetchTour();
+  }, [id]);
+
+  if (error) {
+    return (
+      <div>
+        <div className="error-message">{error}</div>
+        <button onClick={() => navigate("/")}>Quay lại trang chủ</button>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!tourData) {
-    return <h2>Không tìm thấy tour này!</h2>;
+    return (
+      <div>
+        <div>Đang tải...</div>
+        <Footer />
+      </div>
+    );
   }
 
   return (
     <>
-      <Header />
       <div className="tour-detail-page">
-        <TourHeader title={tourData.title} image={tourData.image} price={tourData.price} />
-        <TourGallery images={tourData.gallery} />
-        <div className="tour-content">
-          <div className="tour-main">
-            {/* <TourInfoTabs details={tourData.details} /> */}
-            <TourSchedule schedule={tourData.schedule} />
-          </div>
-          <TourSidebar info={tourData.info} />
-        </div>
+        <TourHeader />
+        <TourSchedule schedule={tourData.schedule} />
+        <InfoSection />
       </div>
       <Footer />
     </>

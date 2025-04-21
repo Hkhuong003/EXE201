@@ -7,7 +7,6 @@ import "./AboutUs.scss";
 const AboutUsPage = () => {
   return (
     <div className="about-us-page">
-      <Header />
       <div className="about-us-content">
         <h1>About Us</h1>
         <p>Welcome to Historical Tourism! "See the World Through Historical Eyes!"</p>

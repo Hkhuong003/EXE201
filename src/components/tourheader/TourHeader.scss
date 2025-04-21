@@ -1,65 +1,77 @@
 .tour-header {
   display: flex;
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 24px 0; /* Giảm padding ngang, giữ dọc */
   align-items: center;
-  gap: 40px; // Tăng khoảng cách giữa ảnh và thông tin
+  gap: 32px; /* Khoảng cách giữa ảnh và thông tin */
 }
 
 .tour-header__left {
   flex: 1;
+  max-width: 50%; /* Giới hạn chiều rộng ảnh */
 }
 
 .tour-header__image {
   width: 100%;
-  border-radius: 10px;
+  height: auto;
+  border-radius: 8px; /* Bo góc nhẹ cho ảnh */
+  object-fit: cover; /* Đảm bảo ảnh không méo */
 }
 
 .tour-header__right {
   flex: 1;
-  margin-left: 20px; // Dịch phần thông tin sang phải hơn
+  padding-left: 16px; /* Khoảng cách nhẹ bên trái */
 }
 
 .tour-header__title {
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a; /* Màu chữ tối */
+  margin-bottom: 16px;
+}
+
+.tour-header__info {
+  margin-bottom: 12px;
 }
 
 .tour-header__info p {
-  margin: 8px 0;
-  font-size: 16px;
+  margin: 10px 0;
+  font-size: 15px;
+  color: #333;
   display: flex;
   align-items: center;
+  gap: 8px; /* Khoảng cách giữa icon và text */
 }
 
-.tour-header__date {
-  background: #f4c542;
-  color: #000;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-left: 5px;
-  font-weight: bold;
+.tour-header__info strong {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.tour-header__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px; /* Khoảng cách giữa các sao */
 }
 
 .tour-header__price {
-  color: red;
+  color: red; /* Giữ màu đỏ */
   font-size: 20px;
-  font-weight: bold;
-  margin-top: 10px;
+  font-weight: 700;
+  margin: 12px 0;
 }
 
 .tour-header__button {
-  background: #2d9cdb;
+  background: #2d9cdb; /* Màu nút xanh dương */
   color: #fff;
   border: none;
-  padding: 12px 20px;
-  border-radius: 5px;
+  padding: 12px 24px;
+  border-radius: 6px;
   font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  margin-top: 10px;
+  transition: background 0.3s ease;
 }
 
 .tour-header__button:hover {
-  background: #1c7bbf;
+  background: #1c7bbf; /* Màu hover */
 }

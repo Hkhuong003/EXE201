@@ -1,8 +1,14 @@
-.tour-card {
+.popular-tour {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .tour-card {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 750px;
+    max-width: 750px; /* Giữ chiều rộng tối đa */
     background: #fff;
     border-radius: 5px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
@@ -10,86 +16,96 @@
     margin-bottom: 10px;
     position: relative;
     transition: transform 0.3s ease-in-out;
-
-    &:hover {
-        transform: translateY(-2px);
-    }
-
-    .tour-image-container {
-        flex-shrink: 0;
-        width: 120px;
-        height: 80px;
-
-        .tour-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-    }
-
-    .tour-content {
-        flex: 1;
-        padding: 0 15px;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        position: relative;
-
-        .tour-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .tour-info {
-            display: flex;
-            flex-direction: column;
-            font-size: 14px;
-            color: #333;
-            gap: 3px;
-
-            .icon {
-                margin-right: 5px;
-                color: #1890ff;
-            }
-
-            .tour-dates {
-                display: flex;
-                align-items: center;
-                gap: 5px;
-            }
-
-            .date-badge {
-                background-color: #E8F4FF;
-                color: #1D72C2;
-                padding: 3px 8px;
-                border-radius: 4px;
-                font-size: 12px;
-                font-weight: bold;
-            }
-        }
-
-        .button-container {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-        }
-
-        .view-button {
-            background-color: #1D9BF0;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease-in-out;
-            margin-top: auto;
-
-            &:hover {
-                background-color: #007ACC;
-            }
-        }
-    }
-}
+  }
+  
+  .tour-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .tour-image-container {
+    flex-shrink: 0;
+    width: 250px; /* Tăng chiều rộng hình ảnh để to hơn */
+    height: 150px; /* Tăng chiều cao hình ảnh */
+    margin-right: 15px; /* Khoảng cách giữa hình ảnh và nội dung */
+  }
+  
+  .tour-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .tour-content {
+    flex: 1;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Tăng khoảng cách giữa các phần tử */
+    position: relative;
+  }
+  
+  .tour-title {
+    font-size: 18px; /* Tăng kích thước tiêu đề */
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+  }
+  
+  .tour-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #666; /* Màu nhạt hơn cho thông tin */
+    gap: 5px; /* Tăng khoảng cách giữa các dòng thông tin */
+  }
+  
+  .tour-info .anticon {
+    margin-right: 5px;
+    color: #1890ff; /* Màu xanh cho biểu tượng */
+  }
+  
+  .tour-info .ant-typography {
+    display: flex;
+    align-items: center;
+  }
+  
+  .tour-content .price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-top: auto; /* Đẩy giá xuống dưới */
+  }
+  
+  .button-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .view-button {
+    background-color: #1d9bf0; /* Màu xanh từ hình */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .view-button:hover {
+    background-color: #007acc;
+  }
+  
+  /* Định dạng đánh giá */
+  .tour-content .ant-rate {
+    font-size: 14px;
+    color: #fadb14; /* Màu vàng cho ngôi sao */
+    margin-right: 5px;
+  }
+  
+  .tour-content .rating-text {
+    font-size: 14px;
+    color: #666;
+  }

@@ -1,35 +1,115 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import "./TourSchedule.scss";
+import ReviewForm from "../reviewForm/ReviewForm";
 
 const TourSchedule = () => {
+  const { id: packageId } = useParams();
   const [activeTab, setActiveTab] = useState("Lịch trình");
+  const [reviews, setReviews] = useState([]);
+  const [error, setError] = useState(null);
+  const [rating, setRating] = useState(5);
+  const [comment, setComment] = useState("");
+  const [submitError, setSubmitError] = useState(null);
+  const [submitSuccess, setSubmitSuccess] = useState(null);
+  const [packageData, setPackageData] = useState(null); // State để lưu dữ liệu package
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(`https://exe201tourbook.azurewebsites.net/api/reviews/package/${packageId}`);
+        setReviews(response.data);
+      } catch (error) {
+        console.error("Lỗi khi lấy đánh giá:", error);
+        setError("Không thể tải đánh giá.");
+      }
+    };
+
+    const fetchPackage = async () => {
+      try {
+        const response = await axios.get(`https://exe201tourbook.azurewebsites.net/api/packages/${packageId}`);
+        setPackageData(response.data);
+      } catch (error) {
+        console.error("Lỗi khi lấy thông tin package:", error);
+        setError("Không thể tải thông tin package.");
+      }
+    };
+
+    if (packageId) {
+      fetchReviews();
+      fetchPackage();
+    }
+  }, [packageId]);
+
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
+    setSubmitError(null);
+    setSubmitSuccess(null);
+
+    const accountId = localStorage.getItem("accountId");
+    if (!accountId || isNaN(parseInt(accountId))) {
+      setSubmitError("Vui lòng đăng nhập để gửi đánh giá.");
+      return;
+    }
+
+    // Tạo entity cho body
+    const reviewData = {
+      accountId: accountId,
+      packageId: packageId,
+      rating:rating,
+      comment:comment,
+      createDate: new Date().toISOString(),
+    };
+
+    try {
+      const response = await axios.post(
+        "https://exe201tourbook.azurewebsites.net/api/reviews",
+        reviewData
+      );
+
+      if (response.data.message === "Review created successfully.") {
+        setSubmitSuccess("Gửi đánh giá thành công!");
+        setComment("");
+        setRating(5);
+
+        const updatedReviews = await axios.get(`https://exe201tourbook.azurewebsites.net/api/reviews/package/${packageId}`);
+        setReviews(updatedReviews.data);
+      } else {
+        throw new Error("Gửi đánh giá thất bại.");
+      }
+    } catch (error) {
+      console.error("Lỗi khi gửi đánh giá:", error);
+      setSubmitError("Gửi đánh giá thất bại. Vui lòng thử lại.");
+    }
+  };
 
   const renderContent = () => {
     switch (activeTab) {
       case "Lịch trình":
         return (
           <div className="tour-schedule__left">
-            <h3>Ngày 1: Khởi hành Tour Săn Mây Đà Lạt</h3>
-            <p>⏰ 05:00 - Xe và HDV đón khách tại điểm hẹn tại TP. Hồ Chí Minh. Khởi hành đi Đà Lạt.</p>
+            <h3>Ngày 1: Khởi hành và Tham quan</h3>
+            <p>⏰ 05:00 - Xe và HDV đón khách tại điểm hẹn. Khởi hành đến điểm đến.</p>
             <p>🚍 08:00 - Dừng chân ăn sáng tại nhà hàng, thưởng thức đặc sản địa phương.</p>
-            <p>📍 11:30 - Tham quan Quảng trường Lâm Viên, chụp hình check-in tại Hoa Dã Quỳ khổng lồ.</p>
+            <p>📍 11:30 - Tham quan một địa điểm nổi tiếng, chụp hình check-in tại khu vực đặc trưng.</p>
             <p>🍽 12:30 - Dùng cơm trưa tại nhà hàng, nhận phòng khách sạn, nghỉ ngơi.</p>
-            <p>🌄 15:00 - Khám phá Thác Pongour – một trong những thác nước đẹp nhất Tây Nguyên.</p>
-            <p>🌇 18:00 - Dùng bữa tối với lẩu gà lá é, tự do tham quan chợ đêm Đà Lạt.</p>
+            <p>🌄 15:00 - Khám phá một địa danh thiên nhiên nổi bật, tận hưởng cảnh đẹp.</p>
+            <p>🌇 18:00 - Dùng bữa tối với món ăn đặc sản, tự do khám phá khu vực vào buổi tối.</p>
 
-            <h3>Ngày 2: Săn mây – Tham quan Đà Lạt</h3>
-            <p>⏰ 04:30 - Khởi hành đi đồi chè Cầu Đất, săn mây, đón bình minh.</p>
-            <p>☕ 07:00 - Thưởng thức cà phê tại quán cafe trên đồi, chụp hình check-in.</p>
-            <p>🏞 09:00 - Tham quan Làng Cù Lần, trải nghiệm không gian núi rừng.</p>
+            <h3>Ngày 2: Khám phá và Trải nghiệm</h3>
+            <p>⏰ 04:30 - Khởi hành sớm để ngắm cảnh thiên nhiên, đón bình minh.</p>
+            <p>☕ 07:00 - Thưởng thức đồ uống tại một quán nổi tiếng, chụp hình lưu niệm.</p>
+            <p>🏞 09:00 - Tham quan một khu vực thiên nhiên hoặc làng văn hóa, trải nghiệm không gian độc đáo.</p>
             <p>🍽 12:00 - Dùng cơm trưa, nghỉ ngơi tại khách sạn.</p>
-            <p>🏡 15:00 - Tham quan Fresh Garden, chiêm ngưỡng vườn hoa khổng lồ.</p>
-            <p>🔥 18:30 - Tham gia tiệc BBQ ngoài trời, giao lưu văn nghệ cồng chiêng.</p>
+            <p>🏡 15:00 - Tham quan một điểm đến nổi bật, khám phá vẻ đẹp địa phương.</p>
+            <p>🔥 18:30 - Tham gia hoạt động giao lưu văn hóa hoặc tiệc ngoài trời, tận hưởng không khí vui vẻ.</p>
 
-            <h3>Ngày 3: Thư giãn và trở về</h3>
+            <h3>Ngày 3: Tham quan và Trở về</h3>
             <p>⏰ 07:00 - Dùng điểm tâm sáng, làm thủ tục trả phòng.</p>
-            <p>🏯 09:00 - Tham quan Chùa Linh Phước – Chùa Ve Chai độc đáo.</p>
-            <p>🚍 12:00 - Dùng cơm trưa, khởi hành về TP. Hồ Chí Minh.</p>
-            <p>🏠 19:00 - Về đến TP.HCM, kết thúc tour, hẹn gặp lại quý khách.</p>
+            <p>🏯 09:00 - Tham quan một địa điểm văn hóa hoặc tâm linh nổi tiếng.</p>
+            <p>🚍 12:00 - Dùng cơm trưa, khởi hành trở về điểm xuất phát.</p>
+            <p>🏠 19:00 - Về đến điểm xuất phát, kết thúc tour, hẹn gặp lại quý khách.</p>
           </div>
         );
 
@@ -48,15 +128,64 @@ const TourSchedule = () => {
         return (
           <div className="tour-schedule__left">
             <h3>Đánh giá từ khách hàng</h3>
-            <p>⭐⭐⭐⭐⭐ "Chuyến đi tuyệt vời, săn mây cực đẹp, hướng dẫn viên nhiệt tình!"</p>
-            <p>⭐⭐⭐⭐ "Lịch trình hợp lý, thức ăn ngon, khách sạn sạch sẽ."</p>
-            <p>⭐⭐⭐⭐⭐ "BBQ và giao lưu cồng chiêng rất thú vị, chắc chắn sẽ quay lại!"</p>
+            {error ? (
+              <p className="error-message">{error}</p>
+            ) : reviews.length === 0 ? (
+              <p>Chưa có đánh giá nào.</p>
+            ) : (
+              reviews.map((review) => (
+                <p key={review.id} className="review-item">
+                  <span className="review-rating">
+                    {"⭐".repeat(review.rating)}
+                  </span>{" "}
+                  "{review.comment}" <br />
+                  <span className="review-date">
+                    {new Date(review.createDate).toLocaleDateString("vi-VN")}
+                  </span>
+                </p>
+              ))
+            )}
           </div>
         );
 
       default:
         return null;
     }
+  };
+
+  const renderRightContent = () => {
+    if (activeTab === 'Đánh giá') {
+      return (
+        <ReviewForm
+          packageId={packageId}
+          onReviewSubmitted={async () => {
+            try {
+              const response = await axios.get(
+                `https://exe201tourbook.azurewebsites.net/api/reviews/package/${packageId}`
+              );
+              setReviews(response.data);
+            } catch (error) {
+              console.error('Lỗi khi làm mới danh sách reviews:', error);
+              setError('Không thể làm mới danh sách reviews.');
+            }
+          }}
+        />
+      );
+    }
+
+    return (
+      <div className="tour-schedule__right">
+        <h4 className="tour-price">
+          {packageData ? `${packageData.price.toLocaleString("vi-VN")}đ / Người` : "Đang tải..."}
+        </h4>
+        <div className="tour-info">
+          <p>🕒 Thời gian: 3 ngày 2 đêm</p>
+          <p>🚍 Phương tiện: Xe du lịch</p>
+          <p>📅 Ngày khởi hành: 22/1, 23/1, 24/1</p>
+        </div>
+        <button className="tour-schedule__button">Đặt tour</button>
+      </div>
+    );
   };
 
   return (
@@ -77,17 +206,7 @@ const TourSchedule = () => {
       {/* Nội dung theo tab */}
       <div className="tour-schedule__content">
         {renderContent()}
-
-        {/* Thông tin bên phải */}
-        <div className="tour-schedule__right">
-          <h4 className="tour-price">1.999.000đ / Người</h4>
-          <div className="tour-info">
-            <p>🕒 Thời gian: 3 ngày 2 đêm</p>
-            <p>🚍 Phương tiện: Xe du lịch</p>
-            <p>📅 Ngày khởi hành: 22/1, 23/1, 24/1</p>
-          </div>
-          <button className="tour-schedule__button">Đặt tour</button>
-        </div>
+        {renderRightContent()}
       </div>
     </div>
   );

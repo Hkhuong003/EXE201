@@ -1,0 +1,90 @@
+.history-page {
+  max-width: 1000px; /* Tăng chiều rộng tối đa để bảng rộng hơn */
+  margin: 40px auto;
+  padding: 20px;
+  background: #f0f4f8;
+  border-radius: 10px;
+
+  h2 {
+    font-size: 24px; /* Tăng kích thước tiêu đề */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase; /* Chữ in hoa để nổi bật */
+  }
+
+  .history-table {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .history-table .ant-table-thead > tr > th {
+    background-color: #42a5f5; /* Màu xanh từ hình */
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 12px; /* Tăng padding để tiêu đề cột rộng rãi hơn */
+    border-bottom: none; /* Bỏ viền dưới */
+    text-align: center; /* Căn giữa tiêu đề cột */
+  }
+
+  /* Bo góc trên cho tiêu đề cột */
+  .history-table .ant-table-thead > tr > th:first-child {
+    border-top-left-radius: 8px;
+  }
+
+  .history-table .ant-table-thead > tr > th:last-child {
+    border-top-right-radius: 8px;
+  }
+
+  .history-table .ant-table-tbody > tr > td {
+    font-size: 14px;
+    color: #333;
+    padding: 12px; /* Tăng padding cho nội dung cột */
+    text-align: center; /* Căn giữa nội dung cột */
+    border-bottom: 1px solid #e8e8e8; /* Viền dưới nhẹ */
+  }
+
+  .history-table .ant-table-tbody > tr:hover > td {
+    background-color: #e6f7ff; /* Màu nền hover xanh nhạt */
+  }
+
+  /* Định dạng chiều rộng cột */
+  .history-table .ant-table-thead > tr > th:nth-child(1),
+  .history-table .ant-table-tbody > tr > td:nth-child(1) {
+    width: 30%; /* Cột "Mô tả" rộng hơn */
+  }
+
+  .history-table .ant-table-thead > tr > th:nth-child(2),
+  .history-table .ant-table-tbody > tr > td:nth-child(2) {
+    width: 20%; /* Cột "Ngày đặt" */
+  }
+
+  .history-table .ant-table-thead > tr > th:nth-child(3),
+  .history-table .ant-table-tbody > tr > td:nth-child(3) {
+    width: 25%; /* Cột "Tổng giá" */
+  }
+
+  .history-table .ant-table-thead > tr > th:nth-child(4),
+  .history-table .ant-table-tbody > tr > td:nth-child(4) {
+    width: 25%; /* Cột "Trạng thái" */
+  }
+
+  /* Style cho trạng thái */
+  .status-confirmed {
+    color: #4caf50;
+    font-weight: bold;
+  }
+
+  .status-pending {
+    color: #ff9800;
+    font-weight: bold;
+  }
+
+  .status-cancelled {
+    color: #f44336;
+    font-weight: bold;
+  }
+}

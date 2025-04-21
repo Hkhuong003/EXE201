@@ -1,111 +1,197 @@
 .tour-schedule {
-  max-width: 1200px;
-  margin: auto;
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tour-schedule__tabs {
+  display: flex;
+  border-bottom: 2px solid #e8e8e8;
+  margin-bottom: 20px;
+}
+
+.tour-schedule__tabs-item {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.tour-schedule__tabs-item.active {
+  color: #1890ff;
+  border-bottom: 2px solid #1890ff;
+}
+
+.tour-schedule__content {
+  display: flex;
+  gap: 20px;
+}
+
+.tour-schedule__left {
+  flex: 2;
+}
+
+.tour-schedule__left h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.tour-schedule__left p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.tour-schedule__right {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: inline-block;
+  width: auto;
+}
+
+.tour-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1890ff;
+  margin-bottom: 15px;
+}
+
+.tour-info p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.tour-schedule__button {
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+.tour-schedule__button:hover {
+  background-color: #40a9ff;
+}
+
+/* Style cho phần đánh giá */
+.error-message {
+  color: #f44336;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.success-message {
+  color: #4caf50;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.review-item {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 15px;
+}
+
+.review-rating {
+  color: #ffca28;
+  margin-right: 5px;
+}
+
+.review-date {
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
+}
+
+/* Style riêng cho tour-schedule__reviewform */
+.tour-schedule__reviewform {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  background: none;
+  box-shadow: none;
+  display: inline-block;
+  width: auto;
+}
+
+.tour-schedule__reviewform .review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Tăng khoảng cách giữa các phần tử */
+}
+
+.tour-schedule__reviewform .review-form h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1890ff;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.tour-schedule__reviewform .review-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Tăng khoảng cách giữa các phần tử */
+  width: 250px; /* Chiều rộng cố định để form đẹp hơn */
+  margin: 0 auto; /* Căn giữa form */
+}
+
+.tour-schedule__reviewform .rating-input select {
+  padding: 8px;
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #666;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-  &__tabs {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-
-    &-item {
-      font-size: 18px;
-      font-weight: bold;
-      color: #666;
-      cursor: pointer;
-      padding: 8px 16px;
-      border-radius: 5px;
-      transition: all 0.3s ease;
-
-      &:hover {
-        background: #e63946;
-        color: white;
-      }
-
-      &.active {
-        background: #e63946;
-        color: white;
-      }
-    }
-  }
-
-  &__content {
-    display: flex;
-    gap: 20px;
-
-    &-left {
-      flex: 2;
-      font-size: 16px;
-      line-height: 1.6;
-      color: #333;
-
-      h3 {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #1d3557;
-      }
-    }
-
-    &-right {
-      flex: 1;
-      background: #f8f9fa;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      text-align: center;
-
-      .tour-price {
-        font-size: 22px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #e63946;
-      }
-
-      .tour-info {
-        font-size: 16px;
-        line-height: 1.5;
-      }
-    }
-  }
-
-  &__button {
-    background: #2d9cdb;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 15px;
-    width: 100%;
-
-    &:hover {
-      background: #1c7bbf;
-    }
-  }
+  width: 100%; /* Chiều rộng 100% trong form */
+  cursor: pointer;
 }
 
-// Responsive
-@media (max-width: 1024px) {
-  .tour-schedule__content {
-    flex-direction: column;
-
-    &-right {
-      width: 100%;
-    }
-  }
+.tour-schedule__reviewform .comment-input textarea {
+  padding: 10px;
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333;
+  min-height: 80px;
+  resize: vertical;
+  width: 100%; /* Chiều rộng 100% trong form */
 }
 
-@media (max-width: 768px) {
-  .tour-schedule__tabs {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+.tour-schedule__reviewform .comment-input textarea::placeholder {
+  color: #999;
+}
+
+.tour-schedule__reviewform .tour-schedule__button {
+  background-color: #0f74e7; /* Màu xanh đậm hơn */
+  color: white;
+  border: none;
+  padding: 12px 20px; /* Tăng padding để nút rộng hơn */
+  border-radius: 5px;
+  font-size: 14px; /* Giảm font-size để chữ nhỏ hơn */
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+.tour-schedule__reviewform .tour-schedule__button:hover {
+  background-color: #1890ff; /* Màu hover đậm hơn */
 }
